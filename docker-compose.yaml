@@ -13,7 +13,8 @@ services:
   #Builds the frontend Docker image and creates the frontend microservice
   mola-yolo-frontend:
     image: molacounsel/yolo-frontend:v1.0.0
-    build: ./frontend
+    build: 
+      context: ./frontend
     container_name: mola-yolo-frontend
     
     ports:
@@ -26,7 +27,8 @@ services:
   #Builds the backend Docker image and creates the backend microservice
   mola-yolo-backend:
     image: molacounsel/yolo-backend:v1.0.0
-    build: ./backend
+    build: 
+      context: ./backend
     container_name: mola-yolo-backend
     
     ports:
