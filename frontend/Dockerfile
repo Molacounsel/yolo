@@ -3,10 +3,10 @@
 FROM node:18-alpine AS build
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /app/client
 
 #Copy and Install application dependencies
-COPY package*.json ./
+COPY client/package*.json ./client/
 RUN npm install
 
 #Copy source code and build project
@@ -17,7 +17,7 @@ RUN npm run build
 FROM node:18-alpine
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /app/client
 
 #Install a minimal static file server
 RUN npm install --global serve
