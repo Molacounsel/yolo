@@ -1,6 +1,6 @@
 #Building a multi-stage Dockerfile for a Node.js application
 # This Dockerfile builds a Node.js application in one stage and then copies the built application to
-FROM node:18-alpine AS build
+FROM node:16-alpine AS build
 
 # Set the working directory in the container
 WORKDIR /app
@@ -15,7 +15,7 @@ COPY . .
 RUN npm run build
 
 # Use a new stage to create the final image
-FROM node:18-alpine
+FROM node:16-alpine
 
 # Set the working directory in the container
 WORKDIR /app
