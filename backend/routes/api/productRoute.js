@@ -16,13 +16,23 @@ router.get('/', (req,res)=>{
 
 // @route POST /products
 // @desc  Create a product
-router.post('/', (req,res)=>{
+router.post('/', (req, res) => {
+    // Clean the price input
+    const rawPrice = req.body.price;
+    const cleanedPrice = parseFloat(
+        String(rawPrice).replace(/[^0-9.]/g, '') 
+    );
+
+    // Validate the cleaned price
+    if (isNaN(cleanedPrice)) {
+        return res.status(400).json({ error: 'Invalid price format' });
+    }
     
     // Create a product item
     const newProduct = new Product({
         name: req.body.name,
         description: req.body.description,
-        price: req.body.price,
+        price: cleanedPrice,
         quantity: req.body.quantity,
     });
 
