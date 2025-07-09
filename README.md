@@ -30,6 +30,6 @@ I began by:
 2. Then changing to the project repository:
 
       ```bash
-   cd Vinge1718/yolo.git
+   cd yolo
    ```
 ## Setting Up Docker Container
