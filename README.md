@@ -3,12 +3,12 @@ This project involved using containerization concepts, such as image tagging, Do
 
 ## Table Of Contents
 - [Goals](#goals)
+- [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
 - [Container Setup](#container-setup)
 - [Errors and Fixes](#errors-and-fixes)
 - [Dockerhub Upload](#dockerhub-upload)
 - [How to Run Locally](#how-to-run-locally)
-- [Contributing](contributing)
 - [License](license)
 
 ## Goals 
@@ -18,6 +18,13 @@ This project aimed to accomplish the following goals:
 3. Containerize MongoDB using Docker and Docker Compose
 4. Deploy backend and frontend images to Dockerhub
 
+## Prerequisites
+The following are the requirements to successfuly run the application:
+1. [Node.js](https://nodejs.org/en/download)
+2. [Docker](https://docs.docker.com/engine/install/)
+3. Docker Compose
+4. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+   
 ## Getting Started
 I began by:
 1. Forking and cloning the following repository to my local machine:
@@ -81,8 +88,12 @@ docker compose build
 docker compose up
 ```
 Then access the website by running the following on your web browser:
+```bash
+http://localhost:3000
+```
 
-(http://localhost:3000)
+## License
+This project is licensed under the [MIT License](./LICENSE).
 
 
 
