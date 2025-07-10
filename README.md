@@ -4,7 +4,7 @@ This project involved using containerization concepts, such as image tagging, Do
 ## Table Of Contents
 - [Goals](#goals)
 - [Getting Started](#getting-started)
-- [Setting Up Docker Container](#setting-up-docker-container)
+- [Container Setup](#container-setup)
 - [Errors and Fixes](#errors-and-fixes)
 - [Dockerhub Upload Summary](#dockerhub-upload-summary)
 - [How to Run Locally](#how-to-run-locally)
@@ -32,4 +32,12 @@ I began by:
       ```bash
    cd yolo
    ```
-## Setting Up Docker Container
+## Container Setup
+
+| Service | Base Image Chosen | Rationale | Status|
+|---|---|---|---|
+| mola-yolo-frontend | node:16-alpine | React app compatibility, multi-stage build optimization, and smaller final image size (131MB) |Pushed to Dockerhub|
+| mola-yolo-backend | node:18-alpine| Efficient Mongo interaction, stability, data persistence suitability, and small final image size (155MB)|Pushed to Dockerhub|
+| yolo-mongo | mongo:4.4 | Compatibility with system's CPU, stability, and simplicity|Running|
+
+## Errors and Fixes
