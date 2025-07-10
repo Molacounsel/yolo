@@ -73,12 +73,18 @@ router.post('/', (req, res) => {
 <img width="1011" height="252" alt="image" src="https://github.com/user-attachments/assets/b9b76622-7cf8-47ce-bb85-b7ad6baf0843" />
 
 ## How to Run Locally
-To run the app locally on your machine, run the following command:
+To run the app locally on your machine, run the following commands:
 ```bash
-git clone https://github.com/counselmola/yolo-project
-cd yolo-project
+git clone https://github.com/Molacounsel/yolo
+cd yolo
 docker compose build
 docker compose up
+```
+Then access the website by running the following on your web browser:
+
+(http://localhost:3000)
+
+
 
 
 
