@@ -6,7 +6,7 @@ This project involved using containerization concepts, such as image tagging, Do
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
 - [Container Setup](#container-setup)
-- [Errors and Fixes](#errors-and-fixes)
+- [Bugs and Fixes](#bugs-and-fixes)
 - [Dockerhub Upload](#dockerhub-upload)
 - [How to Run Locally](#how-to-run-locally)
 - [License](license)
@@ -47,7 +47,7 @@ I began by:
 | mola-yolo-backend | node:18-alpine| Efficient Mongo interaction, stability, data persistence suitability, and small final image size (155MB)|Pushed to Dockerhub|
 | yolo-mongo | mongo:4.4 | Compatibility with system's CPU, stability, and simplicity|Running|
 
-## Errors and Fixes
+## Bugs and Fixes
 ### 1. ENOENT: no such file or directory, open '/app/package.json'
 ![Screenshot from 2025-07-08 00-08-39](https://github.com/user-attachments/assets/6ffa6235-6af6-49de-9fdb-f988c6d25ec3)
 
@@ -90,6 +90,10 @@ docker compose up
 Then access the website by running the following on your web browser:
 ```bash
 http://localhost:3000
+```
+Run the following command to stop the app:
+```bash
+docker compose down
 ```
 
 ## License
