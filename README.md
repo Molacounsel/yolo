@@ -1,5 +1,5 @@
 # YOLO PROJECT: REPLICATING A BASIC MICROSERVICE USING MONGODB, REACT, AND DOCKER 
-This project involved using containerization concepts, such as image tagging, Docker networking, image versioning, data persistence, image chaining, and Docker compose to replicate a basic e-commerce website called *Yolomy*. The backend service runs on Node.js and uses MongoDB to enhance persistence, while the frontend service is built using React. All services can be run using Docker Compose.
+This project involved using containerization concepts, such as image tagging, Docker networking, multi-stage builds, image versioning, data persistence, command chaining, and Docker compose to replicate a basic e-commerce website called *Yolomy*. The backend service runs on Node.js and uses MongoDB to enhance persistence, while the frontend service is built using React. All services can be run using Docker Compose.
 
 ## Table Of Contents
 - [Goals](#goals)
