@@ -1,9 +1,88 @@
 ---
-- name: Ansible playbook to dockerize and run yolo e-commerce app using ansible
-  hosts: all
+- hosts: all
   become: true
-  roles: 
-    - frontend-deployment
-    - setup-mongodb   
-    - backend-deployment
+  tasks: 
+    - name: Ensure Docker is installed
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Ensure Docker is running
+      service:
+        name: docker
+        state: started
+        enabled: true 
+
+    - name: Ensure maandamano-net Docker network exists
+      community.docker.docker_network:
+        name: maandamano-net
+        state: present
+
+    # MongoDB Setup
+    - name: Pull MongoDB image
+      become: true
+      docker_image:
+        name: mongo:4.4
+        source: pull
+
+    - name: Run MongoDB Container
+      docker_container:
+        name: yolo-mongo
+        image: mongo:4.4
+        ports:
+          - '27017:27017'
+        volumes:
+          - /home/vagrant/sabasaba-mongo-data:/data/db
+        networks:
+          - name: maandamano-net
+      tags:
+        - database
+        - backend
+
+    # Backend setup
+    - name: Clone backend repository
+      git:
+        repo: https://github.com/Molacounsel/yolo.git
+        dest: /home/vagrant/yolo
+        version: master
+
+    - name: Build backend Docker image
+      become: true
+      docker_image:
+        build:
+          path: /home/vagrant/yolo/backend
+        name: counselmola/yolo-backend:v1.0.0
+        source: build
     
+    - name: Run backend Docker container
+      docker_container:
+        name: mola-yolo-backend
+        image: counselmola/yolo-backend:v1.0.0
+        networks:
+          - name: maandamano-net
+        ports:
+          - "5000:5000"
+        command: "npm start"
+      become: true
+    
+    # Frontend setup
+    - name: Build frontend Docker image
+      become: true
+      docker_image:
+        build:
+          path: /home/vagrant/yolo/frontend
+        name: counselmola/yolo-frontend:v1.0.0
+        source: build
+
+    - name: Run frontend Docker container
+      docker_container:
+        name: mola-yolo-frontend
+        image: counselmola/yolo-frontend:v1.0.0
+        networks:
+          - name: maandamano-net
+        ports:
+          - "3000:3000"
+      become: true
+    
+
+  
