@@ -1,0 +1,21 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for frontend
+# Frontend setup
+- name: Build frontend Docker image
+  become: true
+  docker_image:
+    build:
+      path: /home/vagrant/yolo/frontend
+    name: counselmola/yolo-frontend:v1.0.0
+    source: build
+
+- name: Run frontend Docker container
+  docker_container:
+    name: mola-yolo-frontend
+    image: counselmola/yolo-frontend:v1.0.0
+    networks:
+      - name: maandamano-net
+    ports:
+      - "3000:3000"
+  become: true
