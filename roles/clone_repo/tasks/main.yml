@@ -1,0 +1,9 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for clone_repo
+# Backend setup
+- name: Clone backend repository
+  git:
+    repo: https://github.com/Molacounsel/yolo.git
+    dest: /home/vagrant/yolo
+    version: master
