@@ -208,15 +208,20 @@ This error means that the vagrant user does not have access to docker.sock. To f
     name: maandamano-net
     state: present
   ```
+### 4. "Provided hosts list is empty, only localhost is available" Error
+I encountered this error when running ansible-playbook playbook.yml in stage_two's virtual environment. This indicates that Ansible could not access the inventory file, causing it to skip the tasks. To fix the error, I simply replaced the line "inventory = hosts" with "inventory = inventory.yml" inside ansible.cfg to enable Ansible to connect to the relevant host. I then copied ansible.cfg into the root directory of stage_two, as shown below.
+
+<img width="939" height="214" alt="image" src="https://github.com/user-attachments/assets/964e6741-d6a5-46e2-9b94-795b1f94bed8" />
+
 ## How To Run Locally
 1. To start VM, cd into stage_two and then run:
 ```bash
 vagrant up
   ```
 2. To ssh into the VM, run:
-   ```bash
+  ```bash
 vagrant ssh
-  ```
+  ``` 
 3. Then run the playbook:
 ```bash
 cd /vagrant/stage_two
