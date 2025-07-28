@@ -25,6 +25,7 @@ The following are the requirements to successfuly run the application:
 3. Docker Compose
 4. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
    
+   
 ## Getting Started
 I began by:
 1. Forking and cloning the following repository to my local machine:
@@ -101,7 +102,7 @@ This project is licensed under the [MIT License](./LICENSE).
 
 
 # I_P 3: CONFIGURATION MANAGEMENT USING VAGRANT, ANSIBLE, AND TERRAFORM
-The goal of this third IP was to set up an automated Ansible configuration playbook that automates configurations on a Vagrant provisioned server. The project is divided into two stages: 1) Ansible Instrumentation, and 2) Ansible (and Terraform-Optional) Instrumentation. However, for the purposes of this IP, I only used Ansible to orchestrate the virtual machine and fire up the Yolomy e-commerce app we were working with in IP 2. 
+The goal of this third IP was to automate the deployment of an e-commerce website across different virtual machines using Ansible, Vagrant, and Docker. The project is divided into two stages: 1) Ansible Instrumentation, and 2) Ansible (and Terraform-Optional) Instrumentation. However, for the purposes of this IP, I only used Ansible to orchestrate the virtual machine and fire up the Yolomy e-commerce app we were working with in IP 2. 
 
 ## Table Of Contents
 - [Prerequisites](#prerequisites)
@@ -117,8 +118,38 @@ The goal of this third IP was to set up an automated Ansible configuration playb
   To successfully provision, configure, and manage the application, you need to have the following installed on your machine:
    1. [Virtual Box](www.virtualbox.org)
    2. [Docker](https://docs.docker.com/engine/install/)
-   3. Docker Compose
-   4. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+   3. [Vagrant](https://developer.hashicorp.com/vagrant/docs/installation)
+   4. [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html)
+   5. [VS Code](https://code.visualstudio.com/download)
 
+  ## Setting Up Virtual Machine
+  To create a virtual environment, we need to have a VirtualBox image. For this project, I used this [VirtualBox Image](https://portal.cloud.hashicorp.com/vagrant/discover/geerlingguy/ubuntu2004) recommended in our project instructions. To do so, I ran the following command on a directory on my local machine:
+```bash
+vagrant init geerlingguy/ubuntu2004 --box-version 1.0.4
+  ```
+This creates a Vagrantfile inside the directory. Open the directory with VS Code and click on the Vagrantfile. Replace the contents with the following:
+```bash
+Vagrant.configure("2") do |config|
+  config.vm.box = "geerlingguy/ubuntu2004"
+  config.vm.box_version = "1.0.4"
+end
+  ```
+To get into the created Virtual Machine, run: 
+```bash
+vagrant ssh
+  ```
+To exit the VM, simply run "exit" in the terminal. 
 
+You can also run the following command to stop the VM:
+```bash
+vagrant halt
+  ```
 
+## Creating Ansible Playbook
+In the root directory, create a playbook.yml file by running the following command in the terminal:
+```bash
+touch playbook.yml
+  ```
+You can then populate the playbook by specifying the hosts that Ansible should target, the script that is going to be executed by the root user, and the tasks to be run, as shown in this image: 
+
+<img width="351" height="74" alt="image" src="https://github.com/user-attachments/assets/a98a5031-9ebb-4050-8f90-c8511cf2453b" />
