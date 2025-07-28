@@ -1,4 +1,4 @@
-# YOLO PROJECT: REPLICATING A BASIC MICROSERVICE USING MONGODB, REACT, AND DOCKER 
+# I_P 2: YOLO PROJECT: REPLICATING A BASIC MICROSERVICE USING MONGODB, REACT, AND DOCKER 
 This project involved using containerization concepts, such as image tagging, Docker networking, multi-stage builds, image versioning, data persistence, command chaining, and Docker compose to replicate a basic e-commerce website called *Yolomy*. The backend service runs on Node.js and uses MongoDB to enhance persistence, while the frontend service is built using React. All services can be run using Docker Compose.
 
 ## Table Of Contents
@@ -100,7 +100,25 @@ docker compose down
 This project is licensed under the [MIT License](./LICENSE).
 
 
+# I_P 3: CONFIGURATION MANAGEMENT USING VAGRANT, ANSIBLE, AND TERRAFORM
+The goal of this third IP was to set up an automated Ansible configuration playbook that automates configurations on a Vagrant provisioned server. The project is divided into two stages: 1) Ansible Instrumentation, and 2) Ansible (and Terraform-Optional) Instrumentation. However, for the purposes of this IP, I only used Ansible to orchestrate the virtual machine and fire up the Yolomy e-commerce app we were working with in IP 2. 
 
+## Table Of Contents
+- [Prerequisites](#prerequisites)
+- [Setting Up Virtual Machine](#setting-up-virtual-machine)
+- [Creating Ansible Playbook](#creating-ansible-playbook)
+- [Defining Roles in Ansible Playbook](#defining-roles-in-ansible-playbook)
+- [Provisioning with Ansible](#provisioning-with-ansible)
+- [Bugs and Fixes](#bugs-and-fixes)
+- [How To Run Locally](#how-to-run-locally)
+- [License](license)
+
+  ## Prerequisites
+  To successfully provision, configure, and manage the application, you need to have the following installed on your machine:
+   1. [Virtual Box](www.virtualbox.org)
+   2. [Docker](https://docs.docker.com/engine/install/)
+   3. Docker Compose
+   4. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 
 
