@@ -1,7 +1,17 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # tasks file for network
-- name: Ensure maandamano-net Docker network exists
-  community.docker.docker_network:
-    name: maandamano-net
-    state: present
+- name: Set up network
+  block:
+    - name: Ensure maandamano-net Docker network exists
+      community.docker.docker_network:
+        name: maandamano-net
+        state: present
+      tags: docker_network
+
+    - name: Ensure maandamano-net Docker network is created
+      ansible.builtin.debug:
+        msg: "Docker network 'maandamano-net' is ready."
+      tags: network_setup
+
+  tags: network

@@ -2,7 +2,7 @@
 - name: Run MongoDB Container
   docker_container:
     name: yolo-mongo
-    image: mongo:8.0.11
+    image: mongo:4.4
     ports:
       - '27017:27017'
     volumes:
@@ -12,3 +12,5 @@
   tags:
     - database
     - backend
+
+    

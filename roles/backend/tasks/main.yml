@@ -1,21 +1,25 @@
 #SPDX-License-Identifier: MIT-0
 ---
-# tasks file for backend
-- name: Build backend Docker image
-  become: true
-  docker_image:
-    build:
-      path: /home/vagrant/yolo/backend
-    name: counselmola/yolo-backend:v1.0.0
-    source: build
+- name: Set up backend service
+  block:
+    - name: Build backend Docker image
+      become: true
+      docker_image:
+        build:
+          path: /home/vagrant/yolo/backend
+        name: counselmola/yolo-backend:v1.0.0
+        source: build
+      tags: docker_image
 
-- name: Run backend Docker container
-  become: true
-  docker_container:
-    name: mola-yolo-backend
-    image: counselmola/yolo-backend:v1.0.0
-    networks:
-      - name: maandamano-net
-    ports:
-      - "5000:5000"
-    command: "npm start"
+    - name: Run backend Docker container
+      become: true
+      docker_container:
+        name: mola-yolo-backend
+        image: counselmola/yolo-backend:v1.0.0
+        networks:
+          - name: maandamano-net
+        ports:
+          - "5000:5000"
+        command: "npm start"
+      tags: docker_container
+  tags: backend
