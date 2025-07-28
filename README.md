@@ -215,17 +215,25 @@ I encountered this error when running ansible-playbook playbook.yml in stage_two
 
 ## How To Run Locally
 1. To run locally on your machine:
+
 ```bash
 git clone https://github.com/Molacounsel/yolo
-cd yolo/stage_two
+cd yolo
+```
+2. Then,
+```bash
+cd stage_two
+```
+3. Then run:
+ ```bash
 vagrant up
 ansible-playbook playbook.yml
   ```
-2. You can access the frontend service on your browser by running:
+4. You can access the frontend service on your browser by running:
 ```bash
 http://localhost:3020
   ```
-3. You can stop the service by running:
+5. You can stop the service by running:
   ```bash
 vagrant halt
   ```
