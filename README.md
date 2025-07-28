@@ -218,20 +218,16 @@ I encountered this error when running ansible-playbook playbook.yml in stage_two
 ```bash
 vagrant up
   ```
-2. To ssh into the VM, run:
-  ```bash
-vagrant ssh
-  ``` 
-3. Then run the playbook:
+2. Then run the playbook:
 ```bash
-cd /vagrant/stage_two
-ansible-playbook playbook.yml --ask-become-pass
+cd /yolo/stage_two
+ansible-playbook playbook.yml
   ```
-4. You can access the frontend service on your browser by running:
+3. You can access the frontend service on your browser by running:
 ```bash
-http://localhost:3000
+http://localhost:3020
   ```
-5. You can stop the service by running:
+4. You can stop the service by running:
   ```bash
 vagrant halt
   ```
