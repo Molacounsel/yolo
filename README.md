@@ -108,8 +108,7 @@ The goal of this third IP was to automate the deployment of an e-commerce websit
 - [Prerequisites](#prerequisites)
 - [Setting Up Virtual Machine](#setting-up-virtual-machine)
 - [Creating Ansible Playbook](#creating-ansible-playbook)
-- [Defining Roles in Ansible Playbook](#defining-roles-in-ansible-playbook)
-- [Provisioning with Ansible](#provisioning-with-ansible)
+- [Provisioning with Ansible and Best Practices](#provisioning-with-ansible-and-best-practices)
 - [Bugs and Fixes](#bugs-and-fixes)
 - [How To Run Locally](#how-to-run-locally)
 - [License](license)
@@ -153,3 +152,69 @@ touch playbook.yml
 You can then populate the playbook by specifying the hosts that Ansible should target, the script that is going to be executed by the root user, and the tasks to be run, as shown in this image: 
 
 <img width="351" height="74" alt="image" src="https://github.com/user-attachments/assets/a98a5031-9ebb-4050-8f90-c8511cf2453b" />
+
+Define each task in playbook.yml and test whether it is working by running:
+```bash
+vagrant up
+  ```
+After verifying that the tasks are running without errors, the next step is to create roles for similar tasks. For example, tasks involving building images can be grouped into the "image_build" role. Roles are created using ansible-galaxy. For example, to create the image_build role, you can run "ansible-galaxy init image_build." Place each task in the relevant role and delete it from the playbook.yml. In the playbook.yml, only list the roles, as shown in our case below:
+
+<img width="335" height="237" alt="image" src="https://github.com/user-attachments/assets/e13a54ac-3732-425d-a5e0-57b66d2b69e1" />
+
+## Provisioning with Ansible and Best Practices
+In Stage 1, it is important to place the roles in blocks and define tags as good coding practice. The following image is an example of how to use blocks and tags in roles for ease of assessment and as a good coding practice. 
+
+<img width="591" height="280" alt="image" src="https://github.com/user-attachments/assets/fc4a4256-4aea-4def-acd2-961fe165e273" />
+
+In Stage 2, we are required to refactor the roles with variables. The variables should be defined in group_vars/all.yml. To complete Stage 2, requirements, you need to create the "Stage_Two" directory in the root directory by running:
+```bash
+mkdir stage_two
+  ```
+Then copy the necessary folders and files into stage_two to successfully orchestrate the app with Ansible:
+```bash
+cp -r roles/ playbook.yml group_vars/ stage_two/
+  ```
+The following is an example of how the roles should look after being refactored with variables. 
+
+<img width="615" height="376" alt="image" src="https://github.com/user-attachments/assets/c6a159b2-c4db-4d11-b918-f5b638d6c1dc" />
+
+This image shows what the group_vars/all.yml looks like:
+
+<img width="602" height="467" alt="image" src="https://github.com/user-attachments/assets/62f6aa21-99ee-4e6a-8d8c-2781514d86e0" />
+
+In the VM, run the following to verify that the application is running on the virtual machine successfully:
+```bash
+ansible-playbook playbook.yml
+  ```
+## Bugs and Fixes
+### 1: "Error while fetching server API version: ('Connection aborted.', FileNotFoundError(2, 'No such file or directory'))"
+This error means that Ansible is interfacing with Docker before Docker is up and running. To debug it, ensure Docker is active and running before Ansible connects to it. You can do so by adding the user to the Docker group during provisioning just before ansible config.vm.provision "ansible" do |ansible| in the Vagrantfile, as shown below 
+
+<img width="584" height="183" alt="image" src="https://github.com/user-attachments/assets/d49f5b5a-31aa-4c7c-b6cb-64ab30e11bf8" />
+
+### 2. Docker Daemon socket error (unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.45/containers/json": dial unix /var/run/docker.sock: connect: permission denied)
+This error means that the vagrant user does not have access to docker.sock. To fix it, run "groups" in the VM terminal to list groups. This will list existing groups except docker. Run "sudo usermod -aG docker vagrant" to add docker group and log out. Log back in and you should see docker is you run "groups."
+
+<img width="899" height="179" alt="Screenshot from 2025-07-27 13-54-29" src="https://github.com/user-attachments/assets/8b6bdec6-d07e-4a9f-8d62-ae80823d5c04" />
+
+### 3. MongoDB Parameter Error
+
+<img width="897" height="127" alt="Screenshot from 2025-07-27 14-12-53" src="https://github.com/user-attachments/assets/867c282d-5f02-4cf1-bc12-9ba71f536551" />
+ This error means that MongoDB is failing because Docker network maandamano-net does not exist at the time Ansible tries to attach the container to it. To fix it, I simply added the following task before any task begins to run in the playbook.yml. This ensures that the network is created before MongoDB starts running, as shown below:
+
+```bash
+- name: Ensure maandamano-net Docker network exists
+  community.docker.docker_network:
+    name: maandamano-net
+    state: present
+  ```
+## How To Run Locally
+
+  
+
+
+
+
+
+
+
