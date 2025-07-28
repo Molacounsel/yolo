@@ -214,20 +214,18 @@ I encountered this error when running ansible-playbook playbook.yml in stage_two
 <img width="939" height="214" alt="image" src="https://github.com/user-attachments/assets/964e6741-d6a5-46e2-9b94-795b1f94bed8" />
 
 ## How To Run Locally
-1. To start VM, cd into stage_two and then run:
+1. To run locally on your machine:
 ```bash
+git clone https://github.com/Molacounsel/yolo
+cd yolo/stage_two
 vagrant up
-  ```
-2. Then run the playbook:
-```bash
-cd /yolo/stage_two
 ansible-playbook playbook.yml
   ```
-3. You can access the frontend service on your browser by running:
+2. You can access the frontend service on your browser by running:
 ```bash
 http://localhost:3020
   ```
-4. You can stop the service by running:
+3. You can stop the service by running:
   ```bash
 vagrant halt
   ```
