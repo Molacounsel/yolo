@@ -209,8 +209,30 @@ This error means that the vagrant user does not have access to docker.sock. To f
     state: present
   ```
 ## How To Run Locally
+1. To start VM, cd into stage_two and then run:
+```bash
+vagrant up
+  ```
+2. To ssh into the VM, run:
+   ```bash
+vagrant ssh
+  ```
+3. Then run the playbook:
+```bash
+cd /vagrant/stage_two
+ansible-playbook playbook.yml --ask-become-pass
+  ```
+4. You can access the frontend service on your browser by running:
+```bash
+http://localhost:3000
+  ```
+5. You can stop the service by running:
+  ```bash
+vagrant halt
+  ```
 
-  
+## License
+This project is licensed under the [MIT License](./LICENSE).
 
 
 
