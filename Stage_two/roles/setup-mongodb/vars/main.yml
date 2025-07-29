@@ -1,4 +1,0 @@
----
-mongo_container_name: yolo_mongo
-mongo_network: maandamano-net
-mongo_volume: sabasaba-mongo-data
