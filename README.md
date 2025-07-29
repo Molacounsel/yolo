@@ -217,18 +217,11 @@ I encountered this error when running ansible-playbook playbook.yml in stage_two
 1. To run locally on your machine:
 
 ```bash
-git clone https://github.com/Molacounsel/yolo
-cd yolo
-```
-2. Then,
-```bash
-cd stage_two
-```
-3. Then run:
- ```bash
-vagrant up
+git clone -b Stage_two https://github.com/Molacounsel/yolo.git && \
+cd yolo/Stage_two && \
+vagrant up && \
 ansible-playbook playbook.yml
-  ```
+```
 4. You can access the frontend service on your browser by running:
 ```bash
 http://localhost:3020
