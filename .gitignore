@@ -7,3 +7,8 @@ vault.yml
 .vscode
 .vscode/*
 .vscode/*.json
+snap
+bin
+lib
+sbin
+lib64
