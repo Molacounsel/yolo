@@ -84,6 +84,8 @@ Vagrant.configure("2") do |config|
   usermod -aG docker vagrant
 SHELL
 
+config.vm.network "forwarded_port", guest: 3000, host: 3020
+
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "playbook.yml"
