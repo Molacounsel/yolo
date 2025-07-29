@@ -109,8 +109,8 @@ The goal of this third IP was to automate the deployment of an e-commerce websit
 - [Setting Up Virtual Machine](#setting-up-virtual-machine)
 - [Creating Ansible Playbook](#creating-ansible-playbook)
 - [Provisioning with Ansible and Best Practices](#provisioning-with-ansible-and-best-practices)
-- [Bugs and Fixes](#bugs-and-fixes)
-- [How To Run Locally](#how-to-run-locally)
+- [Errors and Fixes](#errors-and-fixes)
+- [Run Locally](#run-locally)
 - [License](license)
 
   ## Prerequisites
