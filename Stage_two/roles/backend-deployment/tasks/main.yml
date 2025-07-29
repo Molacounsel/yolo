@@ -1,0 +1,16 @@
+---
+- name: Pull image from repository
+  docker_image:
+    name: counselmola/yolo-backend:v1.0.0
+    source: pull
+
+- name: Create Node.js Backend Container
+  docker_container:
+    name: mola-yolo-backend
+    image: counselmola/yolo-backend:v1.0.0
+    networks:
+      - name: maandamano-net
+    ports:
+      - "5000:5000"
+    command: "npm start"
+  become: true

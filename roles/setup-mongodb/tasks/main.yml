@@ -1,0 +1,16 @@
+---
+- name: Run MongoDB Container
+  docker_container:
+    name: yolo-mongo
+    image: mongo:4.4
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./sabasaba-mongo-data:/data/db
+    networks:
+      - name: maandamano-net
+  tags:
+    - database
+    - backend
+
+    

@@ -1,0 +1,11 @@
+#SPDX-License-Identifier: MIT-0
+---
+- name: Clone app repository
+  block:
+    - name: Clone backend repository
+      ansible.builtin.git:
+        repo: https://github.com/Molacounsel/yolo.git
+        dest: /home/vagrant/yolo
+        version: master
+      tags: git
+  tags: clone_repo
