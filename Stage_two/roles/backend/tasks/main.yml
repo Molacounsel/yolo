@@ -6,20 +6,20 @@
       become: true
       docker_image:
         build:
-          path: /home/vagrant/yolo/backend
-        name: counselmola/yolo-backend:v1.0.0
+          path: "{{ backend_build_path }}"
+        name: "{{ backend_image_name }}:{{ backend_image_tag }}"
         source: build
       tags: docker_image
 
     - name: Run backend Docker container
       become: true
       docker_container:
-        name: mola-yolo-backend
-        image: counselmola/yolo-backend:v1.0.0
+        name: "{{ backend_container_name }}"
+        image: "{{ backend_image_name }}:{{ backend_image_tag }}"
         networks:
-          - name: maandamano-net
+          - name: "{{ backend_network }}"
         ports:
-          - "5000:5000"
-        command: "npm start"
+          - "{{ backend_port }}:{{ backend_port }}"
+        command: "{{ backend_command }}"
       tags: docker_container
   tags: backend

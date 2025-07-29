@@ -7,19 +7,19 @@
       become: true
       docker_image:
         build:
-          path: /home/vagrant/yolo/frontend
-        name: counselmola/yolo-frontend:v1.0.0
+          path: "{{ frontend_build_path }}"
+        name: "{{ frontend_image_name }}:{{ frontend_image_tag }}"
         source: build
       tags: docker_image
 
     - name: Run frontend Docker container
-      docker_container:
-        name: mola-yolo-frontend
-        image: counselmola/yolo-frontend:v1.0.0
-        networks:
-          - name: maandamano-net
-        ports:
-          - "3000:3000"
       become: true
+      docker_container:
+        name: "{{ frontend_container_name }}"
+        image: "{{ frontend_image_name }}:{{ frontend_image_tag }}"
+        networks:
+          - name: "{{ frontend_network }}"
+        ports:
+          - "{{ frontend_port }}:{{ frontend_port }}"
       tags: docker_container
   tags: frontend

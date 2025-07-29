@@ -1,0 +1,44 @@
+# docker variables
+docker_package_name: docker.io
+docker_service_name: docker
+docker_service_state: started
+docker_service_enabled: true
+
+# network variables
+docker_network_name: maandamano-net
+
+# mongodb variables
+mongodb_image_name: mongo
+mongodb_image_tag: 4.4
+mongodb_container_name: yolo-mongo
+mongodb_port: 27017
+mongodb_data_dir: /home/vagrant/sabasaba-mongo-data
+mongodb_network: maandamano-net
+
+# clone_repo variables
+repo_url: https://github.com/Molacounsel/yolo.git
+repo_dest: /home/vagrant/yolo
+repo_version: master
+
+# backend variables
+backend_build_path: /home/vagrant/yolo/backend
+backend_image_name: counselmola/yolo-backend
+backend_image_tag: v1.0.0
+backend_container_name: mola-yolo-backend
+backend_network: maandamano-net
+backend_port: 5000
+backend_command: npm start
+
+# frontend variables
+frontend_build_path: /home/vagrant/yolo/frontend
+frontend_image_name: counselmola/yolo-frontend
+frontend_image_tag: v1.0.0
+frontend_container_name: mola-yolo-frontend
+frontend_network: maandamano-net
+frontend_port: 3000
+
+
+
+
+
+

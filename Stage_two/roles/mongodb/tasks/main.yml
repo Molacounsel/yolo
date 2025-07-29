@@ -6,19 +6,19 @@
     - name: Pull MongoDB image
       become: true
       docker_image:
-        name: mongo:4.4
+        name: "{{ mongodb_image_name }}:{{ mongodb_image_tag }}"
         source: pull
       tags: docker_image
 
     - name: Run MongoDB Container
       docker_container:
-        name: yolo-mongo
-        image: mongo:4.4
+        name: "{{ mongodb_container_name }}"
+        image: "{{ mongodb_image_name }}:{{ mongodb_image_tag }}"
         ports:
-          - "27017:27017"
+          - "{{ mongodb_port }}:{{ mongodb_port }}"
         volumes:
-          - /home/vagrant/sabasaba-mongo-data:/data/db
+          - "{{ mongodb_data_dir }}:/data/db"
         networks:
-          - name: maandamano-net
+          - name: "{{ mongodb_network }}"
       tags: docker_container, database, backend
   tags: mongodb

@@ -4,8 +4,9 @@
   block:
     - name: Clone backend repository
       ansible.builtin.git:
-        repo: https://github.com/Molacounsel/yolo.git
-        dest: /home/vagrant/yolo
-        version: master
+        repo: "{{ repo_url }}"
+        dest: "{{ repo_dest }}"
+        version: "{{ repo_version }}"
       tags: git
   tags: clone_repo
+
