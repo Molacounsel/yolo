@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - docker
+    - network
+    - mongodb
+    - clone_repo
+    - backend
+    - frontend
+    
+ 
+    
+   
+
+
+    
+
+    
+
+    
+    
+    
+    
+
+  
