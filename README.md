@@ -105,7 +105,7 @@ This project is licensed under the [MIT License](./LICENSE).
 The goal of this third IP was to automate the deployment of an e-commerce website across different virtual machines using Ansible, Vagrant, and Docker. The project is divided into two stages: 1) Ansible Instrumentation, and 2) Ansible (and Terraform-Optional) Instrumentation. However, for the purposes of this IP, I only used Ansible to orchestrate the virtual machine and fire up the Yolomy e-commerce app we were working with in IP 2. 
 
 ## Table Of Contents
-- [Prerequisites](#prerequisites)
+- [Requirements](#requirements)
 - [Setting Up Virtual Machine](#setting-up-virtual-machine)
 - [Creating Ansible Playbook](#creating-ansible-playbook)
 - [Provisioning with Ansible and Best Practices](#provisioning-with-ansible-and-best-practices)
@@ -113,7 +113,7 @@ The goal of this third IP was to automate the deployment of an e-commerce websit
 - [Run Locally](#run-locally)
 - [License](license)
 
-  ## Prerequisites
+  ## Requirements
   To successfully provision, configure, and manage the application, you need to have the following installed on your machine:
    1. [Virtual Box](www.virtualbox.org)
    2. [Docker](https://docs.docker.com/engine/install/)
@@ -186,7 +186,7 @@ In the VM, run the following to verify that the application is running on the vi
 ```bash
 ansible-playbook playbook.yml
   ```
-## Bugs and Fixes
+## Errors and Fixes
 ### 1: "Error while fetching server API version: ('Connection aborted.', FileNotFoundError(2, 'No such file or directory'))"
 This error means that Ansible is interfacing with Docker before Docker is up and running. To debug it, ensure Docker is active and running before Ansible connects to it. You can do so by adding the user to the Docker group during provisioning just before ansible config.vm.provision "ansible" do |ansible| in the Vagrantfile, as shown below 
 
@@ -213,7 +213,7 @@ I encountered this error when running ansible-playbook playbook.yml in stage_two
 
 <img width="939" height="214" alt="image" src="https://github.com/user-attachments/assets/964e6741-d6a5-46e2-9b94-795b1f94bed8" />
 
-## How To Run Locally
+## Run Locally
 1. To run locally on your machine:
 
 ```bash
