@@ -166,13 +166,13 @@ In Stage 1, it is important to place the roles in blocks and define tags as good
 
 <img width="591" height="280" alt="image" src="https://github.com/user-attachments/assets/fc4a4256-4aea-4def-acd2-961fe165e273" />
 
-In Stage 2, we are required to refactor the roles with variables. The variables should be defined in group_vars/all.yml. To complete Stage 2, requirements, you need to create the "Stage_Two" directory in the root directory by running:
+In Stage 2, we are required to refactor the roles with variables. The variables should be defined in group_vars/all.yml. To complete Stage 2, requirements, you need to create the "Stage_two" directory in the root directory by running:
 ```bash
-mkdir stage_two
+mkdir Stage_two
   ```
 Then copy the necessary folders and files into stage_two to successfully orchestrate the app with Ansible:
 ```bash
-cp -r roles/ playbook.yml group_vars/ stage_two/
+cp -r roles/ Vagrantfile playbook.yml group_vars/ Stage_two/
   ```
 The following is an example of how the roles should look after being refactored with variables. 
 
