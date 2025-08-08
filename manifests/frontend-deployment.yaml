@@ -13,7 +13,7 @@ spec:
         app: frontend
     spec:
       containers:
-      - name: frontend
+      - name: mola-yolo-frontend
         image: counselmola/yolo-frontend:v1.0.0
         ports:
         - containerPort: 3000
