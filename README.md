@@ -285,24 +285,29 @@ The following are details of my GKE Project and Cluster:
 
 After successfully creating the cluster, configure Google Cloud CLI on your local machine (e.g., VS Code terminal) by running the following commands:
 
-```gcloud auth login && gcloud config set project YOUR_PROJECT_ID
+```bash
+gcloud auth login && gcloud config set project YOUR_PROJECT_ID
 ```
 In my case, that would be:
 
-```gcloud auth login && gcloud config set project yolo-project-468421
+```bash
+gcloud auth login && gcloud config set project yolo-project-468421
 ```
 The run the following command to configure the cluster credentials:
 
 
-```gcloud container clusters get-credentials yolo-cluster --zone us-central1-c
+```bash
+gcloud container clusters get-credentials yolo-cluster --zone us-central1-c
 ```
 You should ensure that you have kubectl installed and that cluster access is configured on your machine. You can follow this official guide to achieve that:
 
-```https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#apt_1
+```bash
+https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#apt_1
 ```
 Once that is done, verify that kubectl is working by running
 
-```kubectl get pods
+```bash
+kubectl get pods
 ```
 If it runs successfully, then you are ready to deploy your manifests. 
 
