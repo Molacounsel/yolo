@@ -295,6 +295,9 @@ gcloud auth login && gcloud config set project yolo-project-468421
 ```
 The run the following command to configure the cluster credentials:
 
+Watch out for a message like this:
+
+<img width="1273" height="522" alt="Screenshot from 2025-08-09 09-23-59" src="https://github.com/user-attachments/assets/cd42d135-96da-4045-bdf6-5e4c5719992c" />
 
 ```bash
 gcloud container clusters get-credentials yolo-cluster --zone us-central1-c
@@ -310,4 +313,25 @@ Once that is done, verify that kubectl is working by running
 kubectl get pods
 ```
 If it runs successfully, then you are ready to deploy your manifests. 
+
+## Deploy the Manifests
+After verifying that kubectl is correctly configured, populate the cluster with the application and deploy the manifests by running the following command:
+```bash
+kubectl apply -f manifests/
+```
+This should indicate that the deployments have been created.
+
+Run the following command to get details about the pods, such as status, age, ports, and IP address: 
+
+```bash
+kubectl get pods
+```
+This should return a message like this:
+
+<img width="1006" height="233" alt="Screenshot from 2025-08-09 12-08-32" src="https://github.com/user-attachments/assets/08e41e89-f665-4f06-986a-0edab23e3da1" />
+
+This means that the app is successfully running and can be accessed via the displayed frontend external IP address in the browser. 
+
+## Bugs and Debugs
+
 
