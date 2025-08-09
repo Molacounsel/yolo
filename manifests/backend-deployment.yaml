@@ -17,3 +17,6 @@ spec:
         image: counselmola/yolo-backend:v1.0.0
         ports:
         - containerPort: 5000
+        env:
+        - name: MONGODB_URI
+          value: mongodb://mongo-service.default.svc.cluster.local:27017/yolodb
