@@ -235,7 +235,46 @@ vagrant halt
 This project is licensed under the [MIT License](./LICENSE).
 
 
+# I_P 4: ORCHESTRATION WITH KUBERNETES
+This project involves applying orchestration concepts to deploy an e-commerce application on Google Kubernetes Engine (GKE). Among the concepts implemented include the use of StatefulSets, headless services, and Persistent Volume Claims for data persistent storage solutions, Docker Image Tags, Containerization, and Multi-service Architecture. 
 
+## Table Of Contents
+- [Required](#required)
+- [Set Up Manifests](#setting-up-manifests)
+- [Configure Kubernetes Cluster](#configure-kubernetes-cluster)
+- [Deploy the Manifests](#deploy-the-manifests)
+- [Bugs and Debugs](#bugs-and-debugs)
+- [Run on Your Machine](#run-on-your-machine)
+- [License](license)
+
+## Required
+In order to successfully run this application, you need the following prerequisites:
+1. [Google Cloud Account](https://myaccount.google.com/?pli=1)
+2. [Google Kubernetes Engine (GKE) Cluster](https://www.youtube.com/watch?v=hxpGC19PzwI)
+3. [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)
+4. [Docker](https://docs.docker.com/engine/install/)
+5. [Kubernetes Manifests](https://kubernetes.io/docs/concepts/overview/working-with-objects/)
+
+## Set Up Manifests
+On the repository root, create a directory/folder called "manifests." This folder should house all the manifest (yaml) files required for successful Kubernetes deployment and launching of the application. These yaml files include:
+1. backend-deployment.yaml for deploying the Node.js backend container
+2. backend-service.yaml for communication between frontend pods and backend
+3. frontend-deployment.yaml for deploying frontend container
+4. frontend-service.yaml for exposing frontend to external users through the External IP address
+5. mongo-statefulset.yaml for persistent data storage
+6. mongo-service.yaml for exposing MongoDB to backend pods
+
+### Note: Each of these files should be created inside the manifests directory. To do so, for example:
+
+```bash
+cd manifests && touch frontend-deployment.yaml
+```
+Below is a screenshot of my manifests directory and its yaml files.
+
+<img width="250" height="173" alt="image" src="https://github.com/user-attachments/assets/53da3b83-3b7c-48cf-a3b5-3037a337c170" />
+
+## Configure Kubernetes Cluster
+To deploy our app on GKE platform, we need to create a project and a cluster inside the project. To do so, log in to your
 
 
 
