@@ -37,7 +37,6 @@ services:
       - mongo
     networks:
       - maandamano-net
-
   #Creates the database microservice
   mongo:
     image: mongo:4.4
@@ -58,4 +57,4 @@ networks:
   maandamano-net:
     name: maandamano-net
     driver: bridge
-    
+    external: true
