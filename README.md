@@ -274,8 +274,35 @@ Below is a screenshot of my manifests directory and its yaml files.
 <img width="250" height="173" alt="image" src="https://github.com/user-attachments/assets/53da3b83-3b7c-48cf-a3b5-3037a337c170" />
 
 ## Configure Kubernetes Cluster
-To deploy our app on GKE platform, we need to create a project and a cluster inside the project. To do so, log in to your
+To deploy our app on GKE platform, we need to create a project and a cluster inside the project. You can use this guide to create a [Google Cloud Project and Cluster](https://cloud.google.com/kubernetes-engine/docs/deploy-app-cluster). 
+
+The following are details of my GKE Project and Cluster:
+### Project
+<img width="436" height="157" alt="image" src="https://github.com/user-attachments/assets/89ef770c-8005-43ba-8e53-edeea41ccc33" />
+
+### Cluster
+<img width="1013" height="147" alt="image" src="https://github.com/user-attachments/assets/91679c5b-e4f4-4997-8755-e5da483a49e5" />
+
+After successfully creating the cluster, configure Google Cloud CLI on your local machine (e.g., VS Code terminal) by running the following commands:
+
+```gcloud auth login && gcloud config set project YOUR_PROJECT_ID
+```
+In my case, that would be:
+
+```gcloud auth login && gcloud config set project yolo-project-468421
+```
+The run the following command to configure the cluster credentials:
 
 
+```gcloud container clusters get-credentials yolo-cluster --zone us-central1-c
+```
+You should ensure that you have kubectl installed and that cluster access is configured on your machine. You can follow this official guide to achieve that:
 
+```https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#apt_1
+```
+Once that is done, verify that kubectl is working by running
+
+```kubectl get pods
+```
+If it runs successfully, then you are ready to deploy your manifests. 
 
