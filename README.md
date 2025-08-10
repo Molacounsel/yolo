@@ -244,8 +244,9 @@ This project involves applying orchestration concepts to build and deploy a full
 - [Configure Kubernetes Cluster](#configure-kubernetes-cluster)
 - [Deploy the Manifests](#deploy-the-manifests)
 - [Bugs and Debugs](#bugs-and-debugs)
+- [Justifications and Final Thoughts](#justifications-and-final-thoughts)
 - [App Access](#app-access)
-- [Justifications and Final Thoughts](#justifications and final-thoughts)
+- [License](license)
 
 ## Required
 In order to successfully run this application, you need the following prerequisites:
@@ -295,7 +296,7 @@ gcloud auth login && gcloud config set project yolo-project-468421
 ```
 Then run the following command to configure the cluster credentials:
 
-Watch out for a message like this:
+Watch for a message like this:
 
 <img width="1273" height="522" alt="Screenshot from 2025-08-09 09-23-59" src="https://github.com/user-attachments/assets/cd42d135-96da-4045-bdf6-5e4c5719992c" />
 
@@ -365,19 +366,12 @@ Note that I had to ensure that the environment variable name in my backend-deplo
 After updating the backend environment variables, I simply re-applied the backend deployment by runnin the following command:
 
 ```bash
-env:
  kubectl apply -f backend-deployment.yaml
 ```
 I then ran "kubectl get pods" to verify that all the pods are running. Finally, I ran "kubectl get svc" to obtain the frontend service external IP to confirm that the app is successfully running on the browser.
 
 <img width="1193" height="295" alt="image" src="https://github.com/user-attachments/assets/43f3ee54-9ae6-4786-8322-b73cb1e9dd40" />
 
-## App Access
-The app is deployed on GKE and can be accessed on the browser via:
-
-```bash
-http://34.9.173.25
-```
 ## Justifications and Final Thoughts
 ### 1. Kubernetes Object Choices
 1. Used StatefulSets for MongoDB for persistent storage and unique network identity.
@@ -390,7 +384,17 @@ Used the LoadBalancer service in frontend-service.yaml to facilitate frontend ex
 ### 3. Use of Persistent Storage
 1. Used PersistentVolume and PersistentVolumeClaim for MongoDB to ensure that when a database pod is deleted, the cart data remains intact.
 2. To verify persistent storage, I simply added a test item into MongoDB and then deleted the pod. The pod was then recreated with all its (previous) data, confirming persistent data storage.
-3. It is important to note, however, that while the backend persists, the same is not true for the frontend. This means that when someone adds a product to the cart, the added item will not be stored. The issue seems to result from improper integration between the UI and the database, which I'm still working tirelessly to debug.   
+3. It is important to note, however, that while the backend persists, the same is not true for the frontend. This means that when someone adds a product to the cart, the added item will not be stored. The issue seems to result from improper integration between the UI and the database, which I'm still working tirelessly to debug.
+
+
+ ## App Access
+The app is deployed on GKE and can be accessed on the browser via:
+
+```bash
+http://34.9.173.25
+```
+## License
+This project is licensed under the [MIT License](./LICENSE).
    
 
 
