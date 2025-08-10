@@ -368,10 +368,18 @@ After updating the backend environment variables, I simply re-applied the backen
 
 ```bash
 env:
-  - name: MONGODB_URI
-    value: mongodb://mongo-service.default.svc.cluster.local:27017/yolodb
+ kubectl apply -f backend-deployment.yaml
 ```
+I then ran "kubectl get pods" to verify that all the pods are running. Finally, I ran "kubectl get svc" to obtain the frontend service external IP to confirm that the app is successfully running on the browser.
 
+<img width="1193" height="295" alt="image" src="https://github.com/user-attachments/assets/43f3ee54-9ae6-4786-8322-b73cb1e9dd40" />
+
+## Run on Your Machine
+1. To run locally on your machine:
+```bash
+env:
+ kubectl apply -f backend-deployment.yaml
+```
 
 
 
