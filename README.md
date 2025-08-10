@@ -383,8 +383,15 @@ Used the LoadBalancer service in frontend-service.yaml to facilitate frontend ex
 
 ### 3. Use of Persistent Storage
 1. Used PersistentVolume and PersistentVolumeClaim for MongoDB to ensure that when a database pod is deleted, the cart data remains intact.
-2. To verify persistent storage, I simply added a test item into MongoDB and then deleted the pod. The pod was then recreated with all its (previous) data, confirming persistent data storage.
-3. It is important to note, however, that while the backend persists, the same is not true for the frontend. This means that when someone adds a product to the cart, the added item will not be stored. The issue seems to result from improper integration between the UI and the database, which I'm still working tirelessly to debug.
+
+   <img width="1297" height="254" alt="image" src="https://github.com/user-attachments/assets/e1b74021-3056-4e6a-b900-650f5cb234af" />
+
+3. To verify persistent storage, I simply added a test item into MongoDB and then deleted the pod. The pod was then recreated with all its (previous) data, confirming persistent data storage. I did this multiple times using different products and product details, as indicated in the screenshots below:
+
+<img width="1299" height="574" alt="image" src="https://github.com/user-attachments/assets/0fffcf77-4b0d-4d7b-889f-2bb567223fcc" />
+<img width="1299" height="642" alt="image" src="https://github.com/user-attachments/assets/fb15d028-ce5c-4a84-9744-c823c3316545" />
+
+5. It is important to note, however, that while the backend persists, the same is not true for the frontend. This means that when someone adds a product to the cart, the added item will not be stored. The issue seems to result from improper integration between the UI and the database, which I'm still working tirelessly to debug.
 
 
  ## App Access
