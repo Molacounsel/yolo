@@ -395,7 +395,7 @@ Used the LoadBalancer service in frontend-service.yaml to facilitate frontend ex
 
 
  ## App Access
-The app is deployed on GKE and can be accessed on the browser via:
+The app is hosted on GKE and can be accessed on the browser via:
 
 ```bash
 http://34.9.173.25
