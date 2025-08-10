@@ -236,7 +236,7 @@ This project is licensed under the [MIT License](./LICENSE).
 
 
 # I_P 4: ORCHESTRATION WITH KUBERNETES
-This project involves applying orchestration concepts to deploy an e-commerce application on Google Kubernetes Engine (GKE). Among the concepts implemented include the use of StatefulSets, headless services, and Persistent Volume Claims for data persistent storage solutions, Docker Image Tags, Containerization, and Multi-service Architecture. 
+This project involves applying orchestration concepts to build and deploy a full-stack e-commerce application on Google Kubernetes Engine (GKE). Among the concepts implemented include the use of StatefulSets, headless services, and Persistent Volume Claims for data persistent storage solutions, Docker Image Tags, Containerization, and Multi-service Architecture. 
 
 ## Table Of Contents
 - [Required](#required)
@@ -263,6 +263,8 @@ On the repository root, create a directory/folder called "manifests." This folde
 4. frontend-service.yaml for exposing frontend to external users through the External IP address
 5. mongo-statefulset.yaml for persistent data storage
 6. mongo-service.yaml for exposing MongoDB to backend pods
+
+For the exposure method, I used the LoadBalancer service in frontend-service.yaml to facilitate frontend exposure to the internet. 
 
 ### Note: Each of these files should be created inside the manifests directory. To do so, for example:
 
@@ -293,11 +295,13 @@ In my case, that would be:
 ```bash
 gcloud auth login && gcloud config set project yolo-project-468421
 ```
-The run the following command to configure the cluster credentials:
+Then run the following command to configure the cluster credentials:
 
 Watch out for a message like this:
 
 <img width="1273" height="522" alt="Screenshot from 2025-08-09 09-23-59" src="https://github.com/user-attachments/assets/cd42d135-96da-4045-bdf6-5e4c5719992c" />
+
+Next, run the following command to connect to the cluster named "yolo-cluster." 
 
 ```bash
 gcloud container clusters get-credentials yolo-cluster --zone us-central1-c
@@ -333,5 +337,44 @@ This should return a message like this:
 This means that the app is successfully running and can be accessed via the displayed frontend external IP address in the browser. 
 
 ## Bugs and Debugs
+### 1. GKE Auth Plugin Warning
+
+<img width="999" height="133" alt="Screenshot from 2025-08-09 09-38-24" src="https://github.com/user-attachments/assets/2ba3bb29-cd6e-4317-845a-b83e5c720dab" />
+
+This error basically means that my machine does not have the gke-gcloud-auth-plugin, which is required to run the "kubectl" command. In short, without the plugin, I would not be able to run critical commands like "kubectl get pods," "kubectl apply -f manifests/," and "kubectl get service." 
+
+To fix it, I simply installed the plugin by following this [official guide](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#install_plugin). NOTE, howver, that I had to go with the external package manager "apt" to have it successfully installed, as shown in the screenshot below.
+
+<img width="769" height="276" alt="image" src="https://github.com/user-attachments/assets/821ef96e-3dce-4bf4-a635-0da3bb544196" />
+
+### 2. Backend Pods Crashing
+
+<img width="990" height="247" alt="Screenshot from 2025-08-09 10-28-40" src="https://github.com/user-attachments/assets/47e4e305-0a87-4537-adff-118c2966251a" />
+
+This means that my backend pods were repeatedly crashing and were not able to run successfully. After thoroughly inspecting the logs and the backend-deployment.yaml, I noticed that I had not defined the environment variables, so the backend could not connect to mongo-service. 
+
+To fix it, I simply added the following environment variables:
+
+```bash
+env:
+  - name: MONGODB_URI
+    value: mongodb://mongo-service.default.svc.cluster.local:27017/yolodb
+```
+<img width="1121" height="522" alt="image" src="https://github.com/user-attachments/assets/1e08cc94-1ab4-41a0-9a6e-8b05538c0b12" />
+
+Note that I had to ensure that the environment variable name in my backend-deployment.yaml (MONGODB_URI) matches the one in the server.js, otherwise the backend pods would still crash.
+
+After updating the backend environment variables, I simply re-applied the backend deployment by runnin the following command:
+
+```bash
+env:
+  - name: MONGODB_URI
+    value: mongodb://mongo-service.default.svc.cluster.local:27017/yolodb
+```
+
+
+
+
+
 
 
