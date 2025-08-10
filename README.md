@@ -245,7 +245,7 @@ This project involves applying orchestration concepts to build and deploy a full
 - [Deploy the Manifests](#deploy-the-manifests)
 - [Bugs and Debugs](#bugs-and-debugs)
 - [App Access](#app-access)
-- [License](license)
+- [Justifications and Final Thoughts](#justifications and final-thoughts)
 
 ## Required
 In order to successfully run this application, you need the following prerequisites:
@@ -263,8 +263,6 @@ On the repository root, create a directory/folder called "manifests." This folde
 4. frontend-service.yaml for exposing frontend to external users through the External IP address
 5. mongo-statefulset.yaml for persistent data storage
 6. mongo-service.yaml for exposing MongoDB to backend pods
-
-For the exposure method, I used the LoadBalancer service in frontend-service.yaml to facilitate frontend exposure to the internet. 
 
 ### Note: Each of these files should be created inside the manifests directory. To do so, for example:
 
@@ -378,8 +376,17 @@ I then ran "kubectl get pods" to verify that all the pods are running. Finally, 
 The app is deployed on GKE and can be accessed on the browser via:
 
 ```bash
-http://http://34.9.173.25/
+http://34.9.173.25
 ```
+## Justifications and Final Thoughts
+### 1. Kubernetes Object Choices
+1. Used StatefulSets for MongoDB for persistent storage and unique network identity.
+2. Deployments were used for both backend and frontend for scalability and auto-healing.
+3. Used Services for external exposure of the pods.
+
+### 2. Method of Exposure
+1. Used the LoadBalancer service in frontend-service.yaml to facilitate frontend exposure to the internet
+2.  
 
 
 
