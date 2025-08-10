@@ -236,7 +236,7 @@ This project is licensed under the [MIT License](./LICENSE).
 
 
 # I_P 4: ORCHESTRATION WITH KUBERNETES
-This project involves applying orchestration concepts to build and deploy a full-stack e-commerce application on Google Kubernetes Engine (GKE). Among the concepts implemented include the use of StatefulSets, headless services, and Persistent Volume Claims for data persistent storage solutions, Docker Image Tags, Containerization, and Multi-service Architecture. 
+This project involves applying orchestration concepts to build and deploy a full-stack e-commerce application on Google Kubernetes Engine (GKE). Among the concepts implemented include the use of StatefulSets, headless services, and Persistent Volume Claims for data persistent storage solutions, Docker Image Tags, Containerization, and Multi-Service Architecture. 
 
 ## Table Of Contents
 - [Required](#required)
@@ -385,8 +385,13 @@ http://34.9.173.25
 3. Used Services for external exposure of the pods.
 
 ### 2. Method of Exposure
-1. Used the LoadBalancer service in frontend-service.yaml to facilitate frontend exposure to the internet
-2.  
+Used the LoadBalancer service in frontend-service.yaml to facilitate frontend exposure to the internet.
+
+### 3. Use of Persistent Storage
+1. Used PersistentVolume and PersistentVolumeClaim for MongoDB to ensure that when a database pod is deleted, the cart data remains intact.
+2. To verify persistent storage, I simply added a test item into MongoDB and then deleted the pod. The pod was then recreated with all its (previous) data, confirming persistent data storage.
+3. It is important to note, however, that while the backend persists, the same is not true for the frontend. This means that when someone adds a product to the cart, the added item will not be stored. The issue seems to result from improper integration between the UI and the database, which I'm still working tirelessly to debug.   
+   
 
 
 
