@@ -244,7 +244,7 @@ This project involves applying orchestration concepts to build and deploy a full
 - [Configure Kubernetes Cluster](#configure-kubernetes-cluster)
 - [Deploy the Manifests](#deploy-the-manifests)
 - [Bugs and Debugs](#bugs-and-debugs)
-- [Run on Your Machine](#run-on-your-machine)
+- [App Access](#app-access)
 - [License](license)
 
 ## Required
@@ -374,11 +374,11 @@ I then ran "kubectl get pods" to verify that all the pods are running. Finally, 
 
 <img width="1193" height="295" alt="image" src="https://github.com/user-attachments/assets/43f3ee54-9ae6-4786-8322-b73cb1e9dd40" />
 
-## Run on Your Machine
-1. To run locally on your machine:
+## App Access
+The app is deployed on GKE and can be accessed on the browser via:
+
 ```bash
-env:
- kubectl apply -f backend-deployment.yaml
+http://http://34.9.173.25/
 ```
 
 
