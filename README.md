@@ -240,7 +240,7 @@ This project involves applying orchestration concepts to build and deploy a full
 
 ## Table Of Contents
 - [Required](#required)
-- [Set Up Manifests](#setting-up-manifests)
+- [Set Up Manifests](#set-up-manifests)
 - [Configure Kubernetes Cluster](#configure-kubernetes-cluster)
 - [Deploy the Manifests](#deploy-the-manifests)
 - [Bugs and Debugs](#bugs-and-debugs)
