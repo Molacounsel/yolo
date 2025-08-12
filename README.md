@@ -294,13 +294,12 @@ In my case, that would be:
 ```bash
 gcloud auth login && gcloud config set project yolo-project-468421
 ```
-Then run the following command to configure the cluster credentials:
 
 Watch for a message like this:
 
 <img width="1273" height="522" alt="Screenshot from 2025-08-09 09-23-59" src="https://github.com/user-attachments/assets/cd42d135-96da-4045-bdf6-5e4c5719992c" />
 
-Next, run the following command to connect to the cluster named "yolo-cluster." 
+Next, run the following command to configure and connect to the cluster named "yolo-cluster." 
 
 ```bash
 gcloud container clusters get-credentials yolo-cluster --zone us-central1-c
