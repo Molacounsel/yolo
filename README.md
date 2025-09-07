@@ -390,8 +390,6 @@ Used the LoadBalancer service in frontend-service.yaml to facilitate frontend ex
 <img width="1299" height="574" alt="image" src="https://github.com/user-attachments/assets/0fffcf77-4b0d-4d7b-889f-2bb567223fcc" />
 <img width="1299" height="642" alt="image" src="https://github.com/user-attachments/assets/fb15d028-ce5c-4a84-9744-c823c3316545" />
 
-5. It is important to note, however, that while the backend persists, the same is not true for the frontend. This means that when someone adds a product to the cart, the added item will not be stored. The issue seems to result from improper integration between the UI and the database, which I'm still working tirelessly to debug.
-
 
  ## App Access
 The app is hosted on GKE and can be accessed on the browser via:
